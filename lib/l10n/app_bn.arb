@@ -1,0 +1,32 @@
+{
+    "appName" : "ক্রেফটি বে",
+
+    "email" : "ইমেইল",
+    "password" : "পাসওয়ার্ড",
+    "firstName" : "প্রথম নাম",
+    "lastName" : "শেষ নাম",
+    "mobile" : "মোবাইল",
+    "city" : "শহর",
+
+    "signUp" : "সাইন আপ",
+    "signUpCreate" : "আপনার অ্যাকাউন্ট তৈরি করুন",
+    "signUpGetStarted" : "আপনার বিবরণ দিয়ে শুরু করুন",
+    "signUpLogin" : "ইতিমধ্যেই একটি অ্যাকাউন্ট আছে? লগইন করুন",
+
+    "signIn" : "সাইন ইন",
+    "signInLogin" : "আপনার অ্যাকাউন্টে লগইন করুন",
+    "signInGetStarted" : "আপনার অ্যাকাউন্টের বিবরণ দিয়ে সাইন ইন করুন",
+    "signInSignUp" : "অ্যাকাউন্ট নেই? সাইন আপ করুন",
+
+    "verifyOTP" : "ওটিপি কোড লিখুন",
+    "verifyOTPDescription" : "একটি ৪ সংখ্যার OTP কোড পাঠানো হয়েছে।",
+    "verifyOTPTimer" : "এই কোডের মেয়াদ শেষ হবে",
+    "verifyOTPResend" : "কোড পুনরায় পাঠান",
+    "verifyOTPButton" : "পরবর্তী",
+
+    "homeScreenCategory" : "বিভাগ",
+    "homeScreenAll" : "সব দেখুন",
+    "homePopular" : "জনপ্রিয়",
+
+    "categoryScreenTitle" : "বিভাগগুলি"
+}

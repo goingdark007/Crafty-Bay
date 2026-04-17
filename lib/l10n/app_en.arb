@@ -1,0 +1,32 @@
+{
+    "appName" : "Crafty Bay",
+
+    "email" : "Email",
+    "password" : "Password",
+    "firstName" : "First Name",
+    "lastName" : "Last Name",
+    "mobile" : "Mobile",
+    "city" : "City",
+
+    "signUp"  : "Sign Up",
+    "signUpCreate" : "Create Your Account",
+    "signUpGetStarted" : "Get started with your details",
+    "signUpLogin" : "Already Have an Account? Login",
+
+    "signIn" : "Sign In",
+    "signInLogin" : "Login to Your Account",
+    "signInGetStarted" : "Sign In with Your Account Details",
+    "signInSignUp" : "Don't have an account? Sign Up",
+
+    "verifyOTP" : "Enter OTP Code",
+    "verifyOTPDescription" : "A 4-digit OTP code has been Sent.",
+    "verifyOTPTimer" : "This code will expire in",
+    "verifyOTPResend" : "Resend Code",
+    "verifyOTPButton" : "Next",
+
+    "homeScreenCategory" : "Categories",
+    "homeScreenAll" : "See All",
+    "homePopular" : "Popular",
+
+    "categoryScreenTitle" : "Categories"
+}

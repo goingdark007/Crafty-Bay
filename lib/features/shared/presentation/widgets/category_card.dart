@@ -1,0 +1,51 @@
+import 'package:flutter/material.dart';
+
+import '../../../../app/app_colors.dart';
+import '../../../../app/extensions/utils_extension.dart';
+import '../../../product/presentation/screens/product_list_by_category.dart';
+
+class CategoryCard extends StatelessWidget {
+
+  const CategoryCard({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+        Navigator.pushNamed(context, ProductListByCategory.routeName, arguments: 'Electronics');
+      },
+      child: Column(
+        children: [
+          Card(
+            color: AppColors.themeColor.withAlpha(20),
+            elevation: 0,
+            child: SizedBox(
+                width: 70,
+                height: 60,
+                child: const Icon(Icons.laptop, size: 48, color: AppColors.themeColor)
+            ),
+          ),
+          Text(getTitle('Electronics'),
+            style: context.textTheme.bodyLarge?.copyWith(
+                color: AppColors.themeColor,
+                fontWeight: FontWeight.w600
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  String getTitle(String name){
+
+    if(name.length > 11){
+      return name.substring(0, 11);
+    }else{
+      return name;
+    }
+
+  }
+
+}
