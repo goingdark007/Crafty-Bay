@@ -1,3 +1,4 @@
+import "package:crafty_bay/features/shared/presentation/providers/category_list_provider.dart";
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 
@@ -36,21 +37,27 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
 
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: GridView.builder(
+          child: Consumer<CategoryListProvider>(
+            builder: (context, provider, child) {
+              return GridView.builder(
 
-              itemCount: 20,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  mainAxisSpacing: 8,
-                  childAspectRatio: 1,
-              ),
-              itemBuilder: (BuildContext context, int index){
+                  itemCount: provider.categoryList.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      mainAxisSpacing: 8,
+                      childAspectRatio: 1,
+                  ),
+                  itemBuilder: (BuildContext context, int index){
 
-                return FittedBox(
-                    child: CategoryCard()
-                );
+                    return FittedBox(
+                        child: CategoryCard(
+                          categoryModel: provider.categoryList[index],
+                        )
+                    );
 
-              },
+                  },
+              );
+            }
           ),
         ),
 

@@ -7,26 +7,36 @@ import '../../data/models/category_model.dart';
 
 class CategoryListProvider extends ChangeNotifier{
 
+  // The number of items in one page
+  final int _pageSize = 10;
 
-  final int _pageCount = 30;
+  // Pagination state
   int _currentPage = 0;
   int? _lastPage;
 
-  // Initial Loading
+  // Loading states
   bool _initialDataInProgress = false;
   bool _moreDataInProgress = false;
   String? _errorMessage;
 
+  // Data
   List<CategoryModel> _categoryList = [];
 
+  // Getters
   bool get initialDataInProgress => _initialDataInProgress;
   bool get moreDataInProgress => _moreDataInProgress;
   List<CategoryModel> get categoryList => _categoryList;
   String? get errorMessage => _errorMessage;
 
-  bool get isInitialLoading => _currentPage == 0;
-  bool get isLoading => initialDataInProgress || moreDataInProgress;
-  bool get isMoreLoading => _currentPage > 0;
+  //bool get isInitialLoading => _currentPage == 0;
+  bool get isLoading => _initialDataInProgress || _moreDataInProgress;
+
+  // hasMore: tells UI whether to show "load more" trigger
+  bool get hasMore  {
+    if(_lastPage == null) return true;
+    if(_currentPage < _lastPage!) return true;
+    return false;
+  }
 
   // More data loading
 
@@ -34,28 +44,42 @@ class CategoryListProvider extends ChangeNotifier{
 
     bool isSuccessful = false;
 
-    if(_lastPage != null && _currentPage >= _lastPage!) {
+    if(isLoading || !hasMore) {
       return false;
     }
 
-    _currentPage++;
+    // 🔥 HARD STOP (this is the real fix)
+    // if (_lastPage != null && _currentPage >= _lastPage!) {
+    //   return false;
+    // }
 
-    if (isInitialLoading) {
+
+
+
+    if (_currentPage == 0) {
       _initialDataInProgress = true;
     } else {
       _moreDataInProgress = true;
     }
 
+    _currentPage++;
+
     notifyListeners();
 
-    final NetworkResponse response = await getNetworkCaller().getRequest(Urls.getCategoriesUrl(_pageCount, _currentPage));
+    final NetworkResponse response = await getNetworkCaller().getRequest(Urls.getCategoriesUrl(_pageSize, _currentPage));
 
     if(response.isSuccess){
 
       isSuccessful = true;
       _errorMessage = null;
 
-      final List<dynamic> data = response.body!['data']['results'];
+      final responseData = response.body!['data'];
+
+      // Assign _lastPage form API, without this, pagination never stops
+      _lastPage ??= responseData["last_page"];
+      debugPrint('$_lastPage');
+
+      final List<dynamic> data = responseData['results'];
 
       _categoryList.addAll(data.map(
               (e) => CategoryModel.fromJson(e)
@@ -66,9 +90,30 @@ class CategoryListProvider extends ChangeNotifier{
       isSuccessful = false;
       _errorMessage = response.errorMessage ?? 'Something Went Wrong';
 
+      // Rollback page on failure so user can retry the same page
+      _currentPage--;
+
     }
 
+    // reset loading
+    if(_initialDataInProgress) _initialDataInProgress = false;
+    if(_moreDataInProgress) _moreDataInProgress = false;
+    notifyListeners();
+
     return isSuccessful;
+
+  }
+
+  // Must have: pull to refresh support
+  Future<bool> refreshCategories() async {
+
+    _currentPage = 0;
+    _lastPage = null;
+    _categoryList.clear();
+    _errorMessage = null;
+
+    // recursion and no notifyListeners here getCategories will do it
+    return getCategories();
 
   }
 

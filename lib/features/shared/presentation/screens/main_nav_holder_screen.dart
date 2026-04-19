@@ -6,6 +6,7 @@ import '../../../category/presentation/screens/category_list_screen.dart';
 import '../../../home/presentation/providers/home_slider_provider.dart';
 import '../../../home/presentation/screens/home_screen.dart';
 import '../../../wish_list/presentation/screens/wish_list_screen.dart';
+import '../providers/category_list_provider.dart';
 import '../providers/main_nav_provider.dart';
 
 class MainNavHolderScreen extends StatefulWidget{
@@ -33,6 +34,8 @@ class _MainNavHolderScreenState extends State<MainNavHolderScreen> {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((timeStamp) async {
       await context.read<HomeSliderProvider>().getHomeSlider();
+      if(!mounted) return;
+      await context.read<CategoryListProvider>().getCategories();
     });
 
   }

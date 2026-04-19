@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:crafty_bay/features/shared/presentation/providers/category_list_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,8 @@ void main() async {
           ChangeNotifierProvider(create: (_) => ThemeProvider()..loadTheme()),
           ChangeNotifierProvider(create: (_) => TimerProvider()),
           ChangeNotifierProvider(create: (_) => MainNavProvider()),
-          ChangeNotifierProvider(create: (_) => HomeSliderProvider(),)
+          ChangeNotifierProvider(create: (_) => HomeSliderProvider(),),
+          ChangeNotifierProvider(create: (_) => CategoryListProvider())
         ],
         child: const MyApp()
       )
