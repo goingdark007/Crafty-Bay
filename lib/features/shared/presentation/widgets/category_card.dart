@@ -46,8 +46,8 @@ class CategoryCard extends StatelessWidget {
 
   String getTitle(String name){
 
-    if(name.length > 11){
-      return name.substring(0, 11);
+    if(name.length > 10){
+      return '${name.substring(0, 10)}...';
     }else{
       return name;
     }
