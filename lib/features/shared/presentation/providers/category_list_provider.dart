@@ -8,7 +8,7 @@ import '../../data/models/category_model.dart';
 class CategoryListProvider extends ChangeNotifier{
 
   // The number of items in one page
-  final int _pageSize = 10;
+  final int _pageSize = 30;
 
   // Pagination state
   int _currentPage = 0;
@@ -20,7 +20,7 @@ class CategoryListProvider extends ChangeNotifier{
   String? _errorMessage;
 
   // Data
-  List<CategoryModel> _categoryList = [];
+  final List<CategoryModel> _categoryList = [];
 
   // Getters
   bool get initialDataInProgress => _initialDataInProgress;
