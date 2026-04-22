@@ -16,39 +16,15 @@ class HomeCategoryList extends StatefulWidget {
 
 class _HomeCategoryListState extends State<HomeCategoryList> {
 
-  late final ScrollController _scrollController;
-
   @override
   void initState() {
     super.initState();
-    _scrollController = ScrollController();
-
     // Fetch first page on open
     // WidgetsBinding.instance.addPostFrameCallback((timeStamp){
     //   context.read<CategoryListProvider>().getCategories();
     // });
-
-    // Listen for scroll, trigger load more near the bottom
-    _scrollController.addListener(_onScroll);
   }
 
-  void _onScroll() {
-    final provider = context.read<CategoryListProvider>();
-
-    // When user is within 200 pixels from the bottom, load more
-    final bool isNearBottom = _scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200;
-
-    if (isNearBottom && !provider.isLoading && provider.hasMore) {
-      provider.getCategories();
-    }
-
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,50 +52,28 @@ class _HomeCategoryListState extends State<HomeCategoryList> {
             );
           }
 
-          // Data loaded
-          return RefreshIndicator(
-            onRefresh: provider.refreshCategories,
-            child: ListView.separated(
-              controller: _scrollController,
-              scrollDirection: Axis.horizontal,
-              // + 1 for loading indicator at the bottom
-              itemCount: provider.categoryList.length + 1,
-              itemBuilder: (BuildContext context, int index){
+          // Data loaded, no pagination only show the first 10
+          return ListView.separated(
+            scrollDirection: Axis.horizontal,
+            // helper method for only showing the first 10 elements of the category list
+            itemCount: _getCategoryLength(provider.categoryList.length),
+            itemBuilder: (BuildContext context, int index){
 
-                // Last item (footer)
-                if (index == provider.categoryList.length) {
+              return CategoryCard(categoryModel: provider.categoryList[index]);
 
-                  // Loading more
-                  if (provider.moreDataInProgress) {
-                    return const SizedBox(
-                      width: 80, // IMPORTANT
-                      child: Center(child: CircularProgressIndicator()),
-                    );
-                  }
-
-                  // No more data
-                  if (!provider.hasMore) {
-                    return SizedBox(
-                      width: 80, // IMPORTANT
-                      child: const Padding(
-                        padding: EdgeInsets.all(16),
-                        child: Center(child: Text('No more categories')),
-                      ),
-                    );
-                  }
-
-                  return const SizedBox.shrink();
-                }
-
-                return CategoryCard(categoryModel: provider.categoryList[index]);
-              },
-              separatorBuilder: (BuildContext context, int index){
-                return const SizedBox(width: 8);
-              },
-            ),
+            },
+            separatorBuilder: (BuildContext context, int index){
+              return const SizedBox(width: 8);
+            },
           );
         }
       ),
     );
   }
+
+  // Defining a method for only showing the first 10 items in the list
+  int _getCategoryLength(int length){
+    return length > 10 ? 10 : length;
+  }
+
 }
