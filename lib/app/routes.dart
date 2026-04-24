@@ -5,6 +5,7 @@ import '../features/auth/presentation/screens/splash_screen.dart';
 import '../features/auth/presentation/screens/verify_otp_screen.dart';
 import '../features/product/presentation/screens/product_details_screen.dart';
 import '../features/product/presentation/screens/product_list_by_category.dart';
+import '../features/shared/data/models/category_model.dart';
 import '../features/shared/presentation/screens/main_nav_holder_screen.dart';
 
 class Routes {
@@ -31,8 +32,8 @@ class Routes {
         widget = MainNavHolderScreen();
         break;
       case ProductListByCategory.routeName:
-        final categoryName = settings.arguments as String;
-        widget = ProductListByCategory(categoryName: categoryName);
+        final categoryModel = settings.arguments as CategoryModel;
+        widget = ProductListByCategory(categoryModel: categoryModel);
         break;
       case ProductDetailsScreen.routeName:
         widget = ProductDetailsScreen();

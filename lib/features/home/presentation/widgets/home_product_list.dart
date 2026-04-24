@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../shared/presentation/widgets/product_card.dart';
 
 class HomeProductList extends StatelessWidget {
   const HomeProductList({
@@ -15,7 +14,7 @@ class HomeProductList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: 6,
         itemBuilder: (BuildContext context, int index){
-          return ProductCard();
+          return  SizedBox(); //ProductCard();
         },
         separatorBuilder: (BuildContext context, int index){
           return const SizedBox(width: 16);
