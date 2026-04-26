@@ -11,11 +11,14 @@ class Urls {
 
   static const String slidesUrl = '$_baseUrl/slides';
   static const String categoryList = '$_baseUrl/categories';
-  static const String productList = '$_baseUrl/products';
+  static const String products = '$_baseUrl/products';
+  static const String productDetails = '$products/id';
 
   static String getCategoriesUrl(int pageSize, int page) => '$categoryList?count=$pageSize&page=$page';
 
   static String getProductsUrl({required int pageSize, required int page, String? categoryId}) =>
-      categoryId != null ? '$productList?count=$pageSize&page=$page&category=$categoryId' : '$productList?count=$pageSize&page=$page';
+      categoryId != null ? '$products?count=$pageSize&page=$page&category=$categoryId' : '$products?count=$pageSize&page=$page';
+
+  static String getProductDetails({required String productId}) => '$productDetails/$productId';
 
 }

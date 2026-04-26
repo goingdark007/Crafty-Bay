@@ -17,7 +17,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, ProductDetailsScreen.routeName),
+      onTap: () => Navigator.pushNamed(context, ProductDetailsScreen.routeName, arguments: productModel.id),
       child: SizedBox(
         width: 180,
         child: Card(

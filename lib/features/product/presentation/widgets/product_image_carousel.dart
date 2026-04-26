@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:crafty_bay/app/app_colors.dart';
+import 'package:crafty_bay/features/shared/presentation/widgets/app_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ProductImageCarousel extends StatefulWidget {
-  const ProductImageCarousel({super.key});
+  final List<String> images;
+  const ProductImageCarousel({super.key, required this.images});
 
   @override
   State<ProductImageCarousel> createState() => _ProductImageCarouselState();
@@ -22,14 +24,14 @@ class _ProductImageCarouselState extends State<ProductImageCarousel> {
             viewportFraction: 1,
             onPageChanged: (index, reason) => _selectedPage.value = index,
           ),
-          items: [1, 2, 3, 4, 5].map((i) {
+          items: widget.images.map((url) {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
                   width: MediaQuery.of(context).size.width,
                   color: Colors.grey.withAlpha(100),
                   alignment: .center,
-                  child: Text('text $i', style: TextStyle(fontSize: 16.0)),
+                  child: AppNetworkImage(imageUrl: url, width: double.infinity, height: 220, fit: BoxFit.fitHeight,),
                 );
               },
             );
@@ -47,7 +49,7 @@ class _ProductImageCarouselState extends State<ProductImageCarousel> {
                 mainAxisAlignment: .center,
                 spacing: 4,
                 children: [
-                  for (int i = 0; i < 5; i++)
+                  for (int i = 0; i < widget.images.length; i++)
                     Container(
                       width: 10,
                       height: 10,

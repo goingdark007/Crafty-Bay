@@ -36,7 +36,8 @@ class Routes {
         widget = ProductListByCategory(categoryModel: categoryModel);
         break;
       case ProductDetailsScreen.routeName:
-        widget = ProductDetailsScreen();
+        final productId = settings.arguments as String;
+        widget = ProductDetailsScreen(productId: productId);
         break;
       default:
         throw Exception('Route not Found');

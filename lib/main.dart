@@ -10,6 +10,7 @@ import 'app/providers/localization_provider.dart';
 import 'app/providers/theme_provider.dart';
 import 'app/providers/timer_provider.dart';
 import 'features/home/presentation/providers/home_slider_provider.dart';
+import 'features/product/presentation/providers/product_details_provider.dart';
 import 'features/shared/presentation/providers/main_nav_provider.dart';
 import 'firebase_options.dart';
 
@@ -47,7 +48,8 @@ void main() async {
           ChangeNotifierProvider(create: (_) => TimerProvider()),
           ChangeNotifierProvider(create: (_) => MainNavProvider()),
           ChangeNotifierProvider(create: (_) => HomeSliderProvider(),),
-          ChangeNotifierProvider(create: (_) => CategoryListProvider())
+          ChangeNotifierProvider(create: (_) => CategoryListProvider()),
+          ChangeNotifierProvider(create: (_) => ProductDetailsProvider()),
         ],
         child: const MyApp()
       )

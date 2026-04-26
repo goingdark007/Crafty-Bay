@@ -37,7 +37,7 @@ class _ColorPickerState extends State<ColorPicker> {
       children: [
         Text(
           'Color',
-          style: context.textTheme.bodyLarge?.copyWith(fontWeight: .bold),
+          style: context.textTheme.bodyLarge?.copyWith(fontWeight: .bold, color: Colors.black87),
         ),
         SizedBox(
           height: 40,
