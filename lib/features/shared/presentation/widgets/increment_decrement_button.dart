@@ -8,10 +8,12 @@ class InDecButton extends StatefulWidget {
     super.key,
     required this.onChanged,
     this.initialValue,
+    required this.maxValue,
   });
 
   final ValueChanged<int> onChanged;
   final int? initialValue;
+  final int maxValue;
 
   @override
   State<InDecButton> createState() => _InDecButtonState();
@@ -56,7 +58,7 @@ class _InDecButtonState extends State<InDecButton> {
         Text('$_counter', style: context.textTheme.bodyLarge,),
         InkWell(
           onTap: () {
-            if(_counter < 10){
+            if(_counter <= widget.maxValue){
               setState(() {
                 _counter++;
               });

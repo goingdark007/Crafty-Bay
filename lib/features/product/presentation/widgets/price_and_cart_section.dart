@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../app/app_colors.dart';
 import '../../../../app/constants.dart';
+import '../../../auth/presentation/widgets/center_progress_indicator.dart';
+import '../providers/add_to_cart_provider.dart';
 
 class PriceAndCartSection extends StatelessWidget {
   final int price;
-  const PriceAndCartSection({super.key, required this.price});
+  final VoidCallback onTap;
+  const PriceAndCartSection({
+    super.key,
+    required this.price,
+    required this.onTap
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +48,14 @@ class PriceAndCartSection extends StatelessWidget {
           ),
           SizedBox(
             width: 120,
-            child: FilledButton(onPressed: () {}, child: const Text('Add to Cart')),
+            child: Consumer<AddToCartProvider>(
+              builder: (context, provider, _) {
+
+                if(provider.inProgress) return CenterProgressIndicator();
+
+                return FilledButton(onPressed: onTap, child: const Text('Add to Cart'));
+              }
+            ),
           ),
         ],
       ),

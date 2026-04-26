@@ -8,8 +8,10 @@ import 'app_theme.dart';
 import 'providers/theme_provider.dart';
 import 'routes.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class CraftyBay extends StatelessWidget {
+  const CraftyBay({super.key});
+
+  static final GlobalKey<NavigatorState>  navigatorKey = GlobalKey<NavigatorState>();
 
   // This widget is the root of our application.
   @override
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
 
       title: 'Crafty Bay',
+      navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       initialRoute: SplashScreen.routeName,
       onGenerateRoute: Routes.onGenerateRoute,

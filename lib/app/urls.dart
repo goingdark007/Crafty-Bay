@@ -21,4 +21,6 @@ class Urls {
 
   static String getProductDetails({required String productId}) => '$productDetails/$productId';
 
+  static const addToCartUrl = '$_baseUrl/cart';
+
 }

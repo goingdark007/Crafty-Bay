@@ -42,7 +42,7 @@ class AuthController { // We can use it with like service locator (like a setup 
 
   }
 
-  static Future<void> logOut () async {
+  static Future<void> clearUserData () async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove(_accessTokenKey);
     await prefs.remove(_userDataKey);

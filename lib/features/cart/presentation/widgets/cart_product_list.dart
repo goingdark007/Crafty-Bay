@@ -52,6 +52,7 @@ class CartProductList extends StatelessWidget {
                     bottom: 8,
                     right: 6,
                     child: InDecButton(
+                      maxValue: 10,
                       onChanged: (int value) {
                         debugPrint(value.toString());
                       },

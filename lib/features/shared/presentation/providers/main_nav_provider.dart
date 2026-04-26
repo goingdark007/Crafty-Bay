@@ -5,10 +5,13 @@ class MainNavProvider extends ChangeNotifier {
   int _currentIndex = 0;
   int get currentIndex => _currentIndex;
 
-  void changeIndex(int index) {
+  Future<void> changeIndex(int index) async {
+
     _currentIndex = index;
     notifyListeners();
   }
+
+  bool shouldCheckUserLoggedIn(int index) => index == 2 || index == 3;
 
   void backToHome(){
     _currentIndex = 0;
