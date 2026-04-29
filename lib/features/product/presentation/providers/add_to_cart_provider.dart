@@ -21,8 +21,8 @@ class AddToCartProvider extends ChangeNotifier {
     notifyListeners();
 
     final NetworkResponse response = await getNetworkCaller().postRequest(
-        Urls.addToCartUrl,
-        params.toJson()
+        url: Urls.addToCartUrl,
+        body: params.toJson()
     );
 
     if (response.isSuccess) {

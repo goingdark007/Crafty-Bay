@@ -22,7 +22,7 @@ class SignInProvider extends ChangeNotifier{
     _signInProgress = true;
     notifyListeners();
 
-    final NetworkResponse response = await getNetworkCaller().postRequest(Urls.signInUrl, params.toJson());
+    final NetworkResponse response = await getNetworkCaller().postRequest(url: Urls.signInUrl, body: params.toJson());
 
     if(response.isSuccess){
 

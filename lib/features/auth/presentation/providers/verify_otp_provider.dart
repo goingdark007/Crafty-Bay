@@ -22,7 +22,7 @@ class VerifyOtpProvider extends ChangeNotifier{
     _verifyOTPInProgress = true;
     notifyListeners();
 
-    final NetworkResponse response = await getNetworkCaller().postRequest(Urls.verifyOTP, params.toJson());
+    final NetworkResponse response = await getNetworkCaller().postRequest(url: Urls.verifyOTP, body: params.toJson());
 
     if(response.isSuccess){
 
@@ -53,7 +53,7 @@ class VerifyOtpProvider extends ChangeNotifier{
       'email' : email
     };
 
-    final NetworkResponse response = await getNetworkCaller().postRequest(Urls.resendOTP, userEmailData);
+    final NetworkResponse response = await getNetworkCaller().postRequest(url: Urls.resendOTP, body: userEmailData);
 
     if(response.isSuccess){
       _errorMessage = null;
