@@ -1,3 +1,4 @@
+import 'package:crafty_bay/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -39,7 +40,7 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   void onTapSignUp() {
-    Navigator.pop(context);
+    Navigator.pushNamed(context, SignUpScreen.routeName);
   }
 
   void onTapSignIn() {
