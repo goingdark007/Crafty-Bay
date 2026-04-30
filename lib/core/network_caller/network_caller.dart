@@ -125,7 +125,7 @@ class NetworkCaller {
             statusCode: response.statusCode,
             isSuccess: false,
             body: null,
-            errorMessage: decodedData['message']
+            errorMessage: decodedData['msg']
         );
 
       }
@@ -188,7 +188,7 @@ class NetworkCaller {
             statusCode: response.statusCode,
             isSuccess: false,
             body: null,
-            errorMessage: decodedData['message']
+            errorMessage: decodedData['msg']
         );
 
       }
