@@ -8,8 +8,17 @@ import 'crafty_bay_app.dart';
 NetworkCaller getNetworkCaller () {
 
   return NetworkCaller(
-      headers: () => {
-        'Content-Type' : 'application/json'
+      headers: ()  {
+
+        final headers = {'Content-Type' : 'application/json'};
+
+        if(AuthController.accessToken != null){
+          // if user logged in and token exists then call the API with token
+          headers['token'] = '${AuthController.accessToken}';
+        }
+
+        return headers;
+
       },
       onUnAuthorized: () async {
         // Log out from app
