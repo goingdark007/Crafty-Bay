@@ -58,7 +58,7 @@ class _InDecButtonState extends State<InDecButton> {
         Text('$_counter', style: context.textTheme.bodyLarge,),
         InkWell(
           onTap: () {
-            if(_counter <= widget.maxValue){
+            if(_counter < widget.maxValue){
               setState(() {
                 _counter++;
               });
