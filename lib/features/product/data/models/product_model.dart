@@ -5,6 +5,7 @@ class ProductModel {
   final int currentPrice;
   final double rating;
   final List<String> images;
+  final int quantity;
 
   ProductModel({
     required this.id,
@@ -12,6 +13,7 @@ class ProductModel {
     required this.currentPrice,
     required this.rating,
     required this.images,
+    required this.quantity,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json){
@@ -21,7 +23,8 @@ class ProductModel {
         title: json["title"],
         currentPrice: json["current_price"],
         rating: json["rating"] ?? 4.0,
-        images: List.from(json['photos'])
+        images: List.from(json['photos']),
+        quantity: json['quantity']
     );
 
   }
@@ -33,7 +36,8 @@ class ProductModel {
       'title' : title,
       'current_price' : currentPrice,
       'rating' : rating,
-      'photos' : images
+      'photos' : images,
+      'quantity' : quantity
     };
 
   }
