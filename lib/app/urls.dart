@@ -21,6 +21,8 @@ class Urls {
 
   static String getProductDetails({required String productId}) => '$productDetails/$productId';
 
-  static const addToCartUrl = '$_baseUrl/cart';
+  static const cartUrl = '$_baseUrl/cart'; // used for add to cart and get cart item list
+
+  static String deleteCartItemUrl(String cartId) => '$cartUrl/$cartId'; // used for delete cart item by id
 
 }
