@@ -59,7 +59,7 @@ class NetworkCaller {
           statusCode: response.statusCode,
           isSuccess: false,
           body: null,
-          errorMessage: decodedData['message']
+          errorMessage: decodedData['msg']
         );
 
       }
@@ -277,10 +277,11 @@ class NetworkCaller {
 
       _logRequest(url, body);
 
+
       final http.Response response = await http.delete(
           uri,
           headers: headers(),
-          body: jsonEncode(body)
+          body: body != null ? jsonEncode(body) : null
       );
 
       _logResponse(response);
@@ -314,7 +315,7 @@ class NetworkCaller {
             statusCode: response.statusCode,
             isSuccess: false,
             body: null,
-            errorMessage: decodedData['message']
+            errorMessage: decodedData['msg']
         );
 
       }
