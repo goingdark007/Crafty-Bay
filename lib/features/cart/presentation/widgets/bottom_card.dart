@@ -1,5 +1,8 @@
+import 'package:crafty_bay/app/constants.dart';
 import 'package:crafty_bay/app/extensions/utils_extension.dart';
+import 'package:crafty_bay/features/cart/presentation/providers/cart_list_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../app/app_colors.dart';
 
@@ -30,7 +33,7 @@ class BottomCard extends StatelessWidget {
             crossAxisAlignment: .start,
             children: [
               Text('Total Price', style: context.textTheme.bodyLarge,),
-              Text('\$100,000.00', style: context.textTheme.titleLarge!.copyWith(
+              Text('${Constants.takaSign}${context.read<CartListProvider>().totalPrice}', style: context.textTheme.titleLarge!.copyWith(
                   color: AppColors.themeColor
                 ),
               ),
